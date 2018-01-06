@@ -22,6 +22,17 @@ app.use(methodOverride('_method'));
 
 app.get('/', (req, res, next) => res.render('searchusers'));
 
+app.post('/users/search', (req, res, next) => {
+  let id = req.body.id;
+  redis.hgetall(id, (err, obj) => {
+    if (err) {
+      res.render('searchusers', { error: 'No users found' });
+    } else {
+      res.render('details', { users: obj });
+    }
+  });
+});
+
 redis.set('name', 'Siddu');
 redis.get('name', (err, name) => {
   console.log(`name is ${name}`);
