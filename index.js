@@ -10,12 +10,12 @@ let port = process.env.PORT || 3000;
 const redis = new Redis();
 const app = new express();
 
+// Static assets
+app.use('/public', express.static('public'));
+
 // View engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
-// Static assets
-app.use(express.static(__dirname + '/public'));
 
 // Body-parser
 app.use(bodyParser.json());
