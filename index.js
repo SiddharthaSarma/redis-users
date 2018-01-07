@@ -28,7 +28,7 @@ app.post('/users/search', (req, res, next) => {
     if (err) {
       res.render('searchusers', { error: 'No users found' });
     } else {
-      res.render('details', { users: obj });
+      res.render('details', { user: obj });
     }
   });
 });
