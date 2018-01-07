@@ -34,6 +34,30 @@ app.post('/users/search', (req, res, next) => {
   });
 });
 
+app.post('/users/add', (req, res, next) => {
+  let { id, first_name, last_name, email, phone } = req.body;
+  redis.hmset(
+    id,
+    [
+      'first_name',
+      first_name,
+      'last_name',
+      last_name,
+      'email',
+      email,
+      'phone',
+      phone
+    ],
+    (err, obj) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render('searchusers');
+      }
+    }
+  );
+});
+
 redis.set('name', 'Siddu');
 redis.get('name', (err, name) => {
   console.log(`name is ${name}`);
