@@ -20,9 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(methodOverride('_method'));
 
+// Handling get requests
 app.get('/', (req, res, next) => res.render('searchusers'));
 app.get('/users/add', (req, res, next) => res.render('adduser'));
 
+// Search the user
 app.post('/users/search', (req, res, next) => {
   let id = req.body.id;
   redis.hgetall(id, (err, obj) => {
@@ -34,6 +36,7 @@ app.post('/users/search', (req, res, next) => {
   });
 });
 
+// Adding the user
 app.post('/users/add', (req, res, next) => {
   let { id, first_name, last_name, email, phone } = req.body;
   redis.hmset(
@@ -58,6 +61,7 @@ app.post('/users/add', (req, res, next) => {
   );
 });
 
+// Listening on the port
 app.listen(port, err => {
   console.log(`Server is running at port ${port}`);
 });
