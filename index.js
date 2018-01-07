@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res, next) => res.render('searchusers'));
+app.get('/users/add', (req, res, next) => res.render('adduser'));
 
 app.post('/users/search', (req, res, next) => {
   let id = req.body.id;
