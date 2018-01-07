@@ -14,6 +14,9 @@ const app = new express();
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+// Static assets
+app.use(express.static(__dirname + '/public'));
+
 // Body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
