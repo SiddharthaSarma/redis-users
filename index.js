@@ -58,11 +58,6 @@ app.post('/users/add', (req, res, next) => {
   );
 });
 
-redis.set('name', 'Siddu');
-redis.get('name', (err, name) => {
-  console.log(`name is ${name}`);
-});
-
 app.listen(port, err => {
   console.log(`Server is running at port ${port}`);
 });
